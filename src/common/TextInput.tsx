@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 type TextInputProps = {
   label: string;
@@ -7,12 +7,12 @@ type TextInputProps = {
   value: string;
 };
 
-
-function TextInput({id, label, value, emitValue}: TextInputProps) {
+function TextInput({ id, label, value, emitValue }: TextInputProps) {
   return (
     <div className="form-group">
       <label htmlFor={id}>{label}</label>
       <input
+        data-testid="some-identifier"
         type="text"
         id={id}
         className="form-control"
@@ -20,7 +20,7 @@ function TextInput({id, label, value, emitValue}: TextInputProps) {
         value={value}
       />
     </div>
-  )
+  );
 }
 
-export default TextInput
+export default TextInput;
