@@ -4,8 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - Git
 - Chrome
-- VS Code (or other editor)
-- Node.js (8+, prefer 12+)
+- VS Code (or other editor) code.visualstudio.com
+- Node.js (8.10+, prefer 12+) nodejs.org
 
 ## REST Server
 

@@ -1,5 +1,6 @@
-import React from "react";
-import "./App.css";
+import React from 'react';
+import './App.css';
+import Greeter from './Greeter';
 
 function App() {
   return (
@@ -9,7 +10,9 @@ function App() {
           <h1>Not Really Banking Bank</h1>
         </div>
       </header>
-      <div></div>
+      <div>
+        <Greeter/>
+      </div>
       <footer className="row">
         <div className="col">
           <p>
