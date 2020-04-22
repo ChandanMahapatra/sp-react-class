@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <main className="container">
+      <header className="row">
+        <div className="col">
+          <h1>Not Really Banking Bank</h1>
+        </div>
       </header>
-    </div>
+      <div></div>
+      <footer className="row">
+        <div className="col">
+          <p>
+            Copyright &copy;2020 the Not Really Banking corporation. <br />
+            <small>
+              No actual resemblance to anything any company is really doing is
+              expressed or implied.
+            </small>
+          </p>
+        </div>
+      </footer>
+    </main>
   );
 }
 
