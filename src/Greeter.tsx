@@ -11,20 +11,24 @@ function Greeter() {
 
   const [name, setName] = useState('Dan');
 
-  const [person, setPerson] = useState<Person>({firstName: 'John', lastName: 'Paxton'});
+  // const [person, setPerson] = useState<Person>({firstName: 'John', lastName: 'Paxton'});
 
   function changeToJohn() {
     console.log('Called changeToJohn()');
     setName('John');
 
+    /*
     setPerson({
       middleName: 'Robert'
     });
+    */
   }
 
+  /*
   const changeToJohnArrow = () => {
     setName('John');
   };
+  */
 
   return (
     <div>
@@ -61,6 +65,7 @@ type TextInputProps = {
   emitValue: (value: string) => void;
 };
 
+/*
 function TextInput({ label, id, emitValue }: TextInputProps) {
   //div.form-group>label+input:text.form-control
 
@@ -85,6 +90,7 @@ function TextInput({ label, id, emitValue }: TextInputProps) {
     </div>
   );
 }
+*/
 
 function ControlledTextInput({ label, id, emitValue }: TextInputProps) {
   const [fieldValue, setFieldValue] = useState('');
