@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, Link, useRouteMatch, useHistory } from 'react-router-dom';
+import { Switch, Route, Link, useRouteMatch } from 'react-router-dom';
 import { Payee } from '../common/banking-types';
 import dao from './payees-dao';
 import PayeesSearch from './PayeesSearch';
@@ -27,8 +27,6 @@ function PayeesManager() {
   // <Route basename="/some/dir/app/ourApp"> ... </Router>
   // match.url = /payees
 
-  const history = useHistory();
-
   const [promisePayees, setPromisePayees] = useState<Payee[]>([]);
   const [asyncPayees, setAsyncPayees] = useState<Payee[]>([]);
 
@@ -49,7 +47,7 @@ function PayeesManager() {
     <React.Fragment>
       <div className="row">
         <div className="col">
-          <p>With promises: There are {promisePayees.length} payees.</p>
+          <p>With promises: There are {promisePayees?.length} payees.</p>
           <p>Async/await: There are {asyncPayees.length} payees.</p>
         </div>
       </div>
