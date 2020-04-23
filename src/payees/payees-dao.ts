@@ -1,4 +1,6 @@
-const baseUrl = 'http://localhost:8000/api/v1/banking/payees';
+import { Payee } from '../common/banking-types';
+
+const baseUrl = 'http://localhost:8000/api/v1/banking/payees?_delay=2000';
 
 /*
 promise.then(s1)
@@ -9,7 +11,7 @@ promise.then(s1)
        .catch(e1)
 */
 
-function getPayees() {
+function getPayees(): Promise<Payee[]> {
   return fetch(baseUrl)
     .then((response) => {
       // Successful HTTP response

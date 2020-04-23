@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route, Link, useRouteMatch, useHistory } from 'react-router-dom';
+import { Payee } from '../common/banking-types';
+import dao from './payees-dao';
 import PayeesSearch from './PayeesSearch';
 import PayeesList from './PayeesList';
 import PayeesForm from './PayeesForm';
@@ -27,8 +29,30 @@ function PayeesManager() {
 
   const history = useHistory();
 
+  const [promisePayees, setPromisePayees] = useState<Payee[]>([]);
+  const [asyncPayees, setAsyncPayees] = useState<Payee[]>([]);
+
+  useEffect(() => {
+    dao.getPayees().then((payees) => setPromisePayees(payees));
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      const payees = await dao.getPayeesAsync();
+      setAsyncPayees(payees);
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <React.Fragment>
+      <div className="row">
+        <div className="col">
+          <p>With promises: There are {promisePayees.length} payees.</p>
+          <p>Async/await: There are {asyncPayees.length} payees.</p>
+        </div>
+      </div>
       <div className="row">
         <div className="col">
           <h3>Payees Manager</h3>
