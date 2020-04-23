@@ -23,12 +23,12 @@ describe('TextInput tests', () => {
   });
 
   test('Smoke test', () => {
-    render(<TextInput id={id} label={label} emitValue={handler} value="" />);
+    render(<TextInput id={id} label={label} emitValue={handler} startingValue="" />);
   });
 
   test('Label test', () => {
     const { queryByLabelText } = render(
-      <TextInput id={id} label={label} emitValue={handler} value="" />,
+      <TextInput id={id} label={label} emitValue={handler} startingValue="" />,
     );
     const inputElement = queryByLabelText(label);
     expect(inputElement).toBeInTheDocument();
@@ -37,7 +37,7 @@ describe('TextInput tests', () => {
   test('Using test id', () => {
     const testId = 'some-identifier';
     const { queryByTestId } = render(
-      <TextInput id={id} label={label} emitValue={handler} value="" />,
+      <TextInput id={id} label={label} emitValue={handler} startingValue="" />,
     );
 
     expect(queryByTestId(testId)).toBeInTheDocument();
@@ -47,7 +47,7 @@ describe('TextInput tests', () => {
 
   test('Make sure emitValue custom event is called', () => {
     const { getByLabelText } = render(
-      <TextInput id={id} label={label} emitValue={handler} value="" />,
+      <TextInput id={id} label={label} emitValue={handler} startingValue="" />,
     );
     const inputField = getByLabelText(label);
     expect(handler).not.toHaveBeenCalled();

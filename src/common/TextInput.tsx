@@ -4,10 +4,10 @@ type TextInputProps = {
   label: string;
   id: string;
   emitValue: (value: string) => void;
-  value: string;
+  startingValue: string;
 };
 
-function TextInput({ id, label, value, emitValue }: TextInputProps) {
+function TextInput({ id, label, startingValue, emitValue }: TextInputProps) {
   return (
     <div className="form-group">
       <label htmlFor={id}>{label}</label>
@@ -17,7 +17,7 @@ function TextInput({ id, label, value, emitValue }: TextInputProps) {
         id={id}
         className="form-control"
         onChange={(e) => emitValue(e.currentTarget.value)}
-        value={value}
+        value={startingValue}
       />
     </div>
   );

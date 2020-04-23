@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
 
+type Person = {
+  firstName?: string;
+  middleName?: string;
+  lastName?: string;
+}
+
 function Greeter() {
   // let name = 'Dan';
 
   const [name, setName] = useState('Dan');
 
+  const [person, setPerson] = useState<Person>({firstName: 'John', lastName: 'Paxton'});
+
   function changeToJohn() {
     console.log('Called changeToJohn()');
     setName('John');
+
+    setPerson({
+      middleName: 'Robert'
+    });
   }
 
   const changeToJohnArrow = () => {
