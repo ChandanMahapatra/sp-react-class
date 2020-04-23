@@ -2,6 +2,7 @@ import React from 'react';
 import EffectHook from './effect-hook/EffectHook';
 import { Switch, Route, useRouteMatch, Link } from 'react-router-dom';
 import ContextDemo from './context-demo/ContextDemo';
+import RouteParametersDemo from './route-parameters/RouteParametersDemo';
 
 function DemosManager() {
   const parentUrl = useRouteMatch().url;
@@ -17,6 +18,9 @@ function DemosManager() {
             <li>
               <Link to={`${parentUrl}/context-demo`}>Context API</Link>
             </li>
+            <li>
+              <Link to={`${parentUrl}/route-params`}>Route Params</Link>
+            </li>
           </ul>
         </div>
         <div className="col">
@@ -26,6 +30,9 @@ function DemosManager() {
             </Route>
             <Route path={`${parentUrl}/context-demo`}>
               <ContextDemo />
+            </Route>
+            <Route path={`${parentUrl}/route-params`}>
+              <RouteParametersDemo />
             </Route>
           </Switch>
         </div>
