@@ -3,7 +3,7 @@ import { Switch, Route, Link, useRouteMatch } from 'react-router-dom';
 import { Payee } from '../common/banking-types';
 import dao from './payees-dao';
 import PayeesSearch from './PayeesSearch';
-import PayeesList from './PayeesList';
+import PayeesList from './PayeesListFetch';
 import PayeesForm from './PayeesForm';
 
 /*

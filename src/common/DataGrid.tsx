@@ -1,4 +1,6 @@
 import React from 'react';
+import { HasId } from './banking-types';
+import * as lodash from 'lodash';
 
 export type ColumnConfig = {
   field: string;
@@ -7,10 +9,10 @@ export type ColumnConfig = {
 
 type DataGridProps<T> = {
   columns: ColumnConfig[];
-  rows?: T[];
+  rows: T[];
 };
 
-function DataGrid<T>({ columns, rows }: DataGridProps<T>) {
+function DataGrid<T extends HasId>({ columns, rows }: DataGridProps<T>) {
   return (
     <table className="table table-striped table-hover">
       <thead>
@@ -20,7 +22,15 @@ function DataGrid<T>({ columns, rows }: DataGridProps<T>) {
           ))}
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        {rows.map((row) => (
+          <tr key={row.id}>
+            {columns.map((column) => (
+              <td key={column.field}>{lodash.get(row, column.field)}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 }
