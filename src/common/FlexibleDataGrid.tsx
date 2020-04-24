@@ -7,7 +7,7 @@ export type SortIndicator = '⏫' | '⏬' | '';
 export type DataGridAction = {
   type: string;
   [key: string]: any;
-}
+};
 
 export type ColumnConfig = {
   field: string;
@@ -16,22 +16,35 @@ export type ColumnConfig = {
 };
 
 export type DataGridState = {
-  rows: any[],
-  columns: ColumnConfig[]
-}
+  rows: any[];
+  columns: ColumnConfig[];
+};
 
 type DataGridProps<S extends DataGridState> = {
   state: S;
-  dispatch: Dispatch<DataGridAction>
+  dispatch: Dispatch<DataGridAction>;
 };
 
-function DataGrid<S extends DataGridState>({ state: {columns, rows}, dispatch }: DataGridProps<S>) {
+function DataGrid<S extends DataGridState>({
+  state: { columns, rows },
+  dispatch,
+}: DataGridProps<S>) {
+  function handleColumnSelect(field: string) {
+    dispatch({
+      type: 'sort',
+      field
+    })
+  }
+
   return (
     <table className="table table-striped table-hover">
       <thead>
         <tr>
           {columns.map((column) => (
-            <th key={column.field}>{column.label}</th>
+            <th key={column.field} onClick={() => handleColumnSelect(column.field)}>
+              {column.label}
+              <span>{column.sortIndicator}</span>
+            </th>
           ))}
         </tr>
       </thead>

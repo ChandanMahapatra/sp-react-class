@@ -6,14 +6,17 @@ const columns: ColumnConfig[] = [
   {
     field: 'payeeName',
     label: 'Payee Name',
+    sortIndicator: ''
   },
   {
     field: 'address.city',
     label: 'City',
+    sortIndicator: ''
   },
   {
     field: 'address.state',
     label: 'State',
+    sortIndicator: ''
   },
 ];
 

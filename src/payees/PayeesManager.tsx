@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { Switch, Route, Link, useRouteMatch } from 'react-router-dom';
 import { Payee } from '../common/banking-types';
 import dao from './payees-dao';
-import PayeesContext, { PayeesContextType } from './payees-context';
+import PayeesContext, {
+  PayeesContextType,
+  PayeesContextStateType,
+  PayeeAction,
+  SortDirection,
+} from './payees-context';
 import PayeesSearch from './PayeesSearch';
 import PayeesList from './PayeesListContext';
 import PayeesForm from './PayeesForm';
@@ -13,6 +18,33 @@ Routed-to components always have access to
 - location
 - match
 */
+
+function payeesReducer(
+  state: PayeesContextStateType,
+  action: PayeeAction,
+): PayeesContextStateType {
+  switch (action.type) {
+    case 'sort': {
+      let sortDirection: SortDirection = 'asc';
+      if (state.sortField === action.sortField && state.sortDirection === 'asc') {
+        sortDirection = 'desc';
+      }
+      state.columns.forEach((column) => {
+        if (column.field === action.sortField) {
+          column.sortIndicator = sortDirection === 'asc' ? '⏫' : '⏬';
+        } else {
+          column.sortIndicator = '';
+        }
+      });
+      return { ...state, sortField: action.sortField, sortDirection };
+    }
+    case 'payees': {
+      return { ...state, payees: action.payees };
+    }
+    default:
+      throw new Error('Could not understand type: ' + action.type);
+  }
+}
 
 function PayeesManager() {
   const match = useRouteMatch();
@@ -31,15 +63,41 @@ function PayeesManager() {
   const [promisePayees, setPromisePayees] = useState<Payee[]>([]);
   const [asyncPayees, setAsyncPayees] = useState<Payee[]>([]);
 
-  const contextValue: PayeesContextType = {
+  const initialState: PayeesContextStateType = {
     payees: promisePayees,
     sortField: '',
     sortDirection: 'asc',
-    setPayees: setPromisePayees,
+    columns: [
+      {
+        field: 'payeeName',
+        label: 'Payee Name',
+        sortIndicator: '',
+      },
+      {
+        field: 'address.city',
+        label: 'City',
+        sortIndicator: '',
+      },
+      {
+        field: 'address.state',
+        label: 'State',
+        sortIndicator: '',
+      },
+    ],
+  };
+
+  const [state, dispatch] = useReducer(payeesReducer, initialState);
+
+  const contextValue: PayeesContextType = {
+    state,
+    dispatch,
   };
 
   useEffect(() => {
-    dao.getPayees().then((payees) => setPromisePayees(payees));
+    dao.getPayees().then((payees) => {
+      setPromisePayees(payees);
+      dispatch({ type: 'payees', payees });
+    });
   }, []);
 
   useEffect(() => {

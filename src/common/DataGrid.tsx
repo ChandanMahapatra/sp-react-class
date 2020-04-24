@@ -2,9 +2,13 @@ import React from 'react';
 import { HasId } from './banking-types';
 import * as lodash from 'lodash';
 
+export type SortIndicator = '⏫' | '⏬' | '';
+
+
 export type ColumnConfig = {
   field: string;
   label: string;
+  sortIndicator: SortIndicator;
 };
 
 type DataGridProps<T> = {
@@ -19,7 +23,7 @@ function DataGrid<T extends HasId>({ columns, rows, selectHeader }: DataGridProp
       <thead>
         <tr>
           {columns.map((column) => (
-            <th key={column.field} onClick={() => selectHeader && selectHeader(column.field)}>{column.label}</th>
+            <th key={column.field} onClick={() => selectHeader && selectHeader(column.field)}>{column.label}<span>&nbsp;{column.sortIndicator}</span></th>
           ))}
         </tr>
       </thead>

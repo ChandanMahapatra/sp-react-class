@@ -1,25 +1,21 @@
 import React, { useContext } from 'react';
 import * as lodash from 'lodash';
-import PayeesContext, { SortDirection } from './payees-context';
-import PayeesList from './PayeesList';
+import PayeesContext from './payees-context';
+import DataGrid from '../common/DataGrid';
 
 function PayeesListContext() {
-  const context = useContext(PayeesContext);
+  const { state, dispatch } = useContext(PayeesContext);
+
+  const sortedPayees = lodash.orderBy(state.payees, state.sortField, state.sortDirection);
 
   function handleSelectHeader(field: string) {
-    let sortDirection: SortDirection = 'asc';
-    if (field === context.sortField && context.sortDirection === 'asc') {
-      sortDirection = 'desc';
-    }
-
-    context.sortDirection = sortDirection;
-    context.sortField = field;
-    context.setPayees(
-      lodash.orderBy(context.payees, context.sortField, context.sortDirection),
-    );
+    dispatch({
+      type: 'sort',
+      sortField: field
+    });
   }
 
-  return <PayeesList payees={context.payees} selectHeader={handleSelectHeader} />;
+  return <DataGrid columns={state.columns} rows={sortedPayees} selectHeader={handleSelectHeader}/>
 }
 
 export default PayeesListContext;
