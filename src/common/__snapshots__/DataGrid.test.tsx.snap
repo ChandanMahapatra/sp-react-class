@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataGrid snapshot 1`] = `
+<div>
+  <table
+    class="table table-striped table-hover"
+  >
+    <thead>
+      <tr>
+        <th
+          style="cursor: inherit;"
+        >
+          First Name
+          <span>
+             
+            
+          </span>
+        </th>
+        <th
+          style="cursor: inherit;"
+        >
+          Last Name
+          <span>
+             
+            
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Jenny
+        </td>
+        <td>
+          Sparks
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Lucas
+        </td>
+        <td>
+          Trent
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`DataGrid with indicator snapshot 1`] = `
+<div>
+  <table
+    class="table table-striped table-hover"
+  >
+    <thead>
+      <tr>
+        <th
+          style="cursor: inherit;"
+        >
+          First Name
+          <span>
+             
+            ⏫
+          </span>
+        </th>
+        <th
+          style="cursor: inherit;"
+        >
+          Last Name
+          <span>
+             
+            
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Jenny
+        </td>
+        <td>
+          Sparks
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Lucas
+        </td>
+        <td>
+          Trent
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

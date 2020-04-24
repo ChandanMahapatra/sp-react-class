@@ -3,7 +3,7 @@ import { Switch, Route, Link, useRouteMatch } from 'react-router-dom';
 import { Payee } from '../common/banking-types';
 import dao from './payees-dao';
 import PayeesContext, {
-  PayeesContextStateType,
+  initialState,
   payeesReducer
 } from './payees-context';
 import PayeesSearch from './PayeesSearch';
@@ -32,29 +32,6 @@ function PayeesManager() {
   // match.url = /payees
 
   const [asyncPayees, setAsyncPayees] = useState<Payee[]>([]);
-
-  const initialState: PayeesContextStateType = {
-    payees: [],
-    sortField: '',
-    sortDirection: 'asc',
-    columns: [
-      {
-        field: 'payeeName',
-        label: 'Payee Name',
-        sortIndicator: '',
-      },
-      {
-        field: 'address.city',
-        label: 'City',
-        sortIndicator: '',
-      },
-      {
-        field: 'address.state',
-        label: 'State',
-        sortIndicator: '',
-      },
-    ],
-  };
 
   const [state, dispatch] = useReducer(payeesReducer, initialState);
 

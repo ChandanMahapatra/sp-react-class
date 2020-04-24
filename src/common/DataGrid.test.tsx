@@ -11,10 +11,12 @@ beforeEach(() => {
     {
       field: 'firstName',
       label: 'First Name',
+      sortIndicator: '',
     },
     {
       field: 'lastName',
       label: 'Last Name',
+      sortIndicator: '',
     },
   ];
 
@@ -48,11 +50,21 @@ test('Did all columns render?', () => {
 });
 
 test('Did the rows render', () => {
-  const {getByText} = render(<DataGrid columns={columns} rows={rows} />);
+  const { getByText } = render(<DataGrid columns={columns} rows={rows} />);
 
-  rows.forEach(row => {
+  rows.forEach((row) => {
     getByText(row.firstName);
     getByText(row.lastName);
-  })
+  });
+});
 
-})
+test('DataGrid snapshot', () => {
+  const { container } = render(<DataGrid columns={columns} rows={rows} />);
+  expect(container).toMatchSnapshot();
+});
+
+test('DataGrid with indicator snapshot', () => {
+  columns[0].sortIndicator = '⏫';
+  const { container } = render(<DataGrid columns={columns} rows={rows} />);
+  expect(container).toMatchSnapshot();
+});

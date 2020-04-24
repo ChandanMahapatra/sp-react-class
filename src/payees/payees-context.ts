@@ -33,6 +33,29 @@ const PayeesContext = React.createContext<PayeesContextType>({
   dispatch: null,
 });
 
+export const initialState: PayeesContextStateType = {
+  payees: [],
+  sortField: '',
+  sortDirection: 'asc',
+  columns: [
+    {
+      field: 'payeeName',
+      label: 'Payee Name',
+      sortIndicator: '',
+    },
+    {
+      field: 'address.city',
+      label: 'City',
+      sortIndicator: '',
+    },
+    {
+      field: 'address.state',
+      label: 'State',
+      sortIndicator: '',
+    },
+  ],
+};
+
 export function payeesReducer(
   state: PayeesContextStateType,
   action: PayeeAction,

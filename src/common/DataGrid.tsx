@@ -7,7 +7,7 @@ export type SortIndicator = '⏫' | '⏬' | '';
 export type ColumnConfig = {
   field: string;
   label: string;
-  sortIndicator: SortIndicator;
+  sortIndicator?: SortIndicator;
 };
 
 type DataGridProps<T> = {
@@ -25,7 +25,7 @@ function DataGrid<T extends HasId>({ columns, rows, selectHeader }: DataGridProp
             <th
               key={column.field}
               onClick={() => selectHeader && selectHeader(column.field)}
-              style={{cursor: selectHeader ? 'pointer' : 'inherit'}}
+              style={{cursor: selectHeader ? 'pointer' : 'inherit',}}
             >
               {column.label}
               <span>&nbsp;{column.sortIndicator}</span>
