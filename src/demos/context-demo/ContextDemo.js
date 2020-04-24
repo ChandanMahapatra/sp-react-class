@@ -59,8 +59,8 @@ function LeftTwo() {
       <h4>LeftTwo</h4>
       {/* Toggle these */}
       {/* <LeftThree /> */}
-      {/* <LeftThreeHook /> */}
-      <LeftThreeClass />
+      <LeftThreeHook />
+      {/* <LeftThreeClass /> */}
     </div>
   );
 }

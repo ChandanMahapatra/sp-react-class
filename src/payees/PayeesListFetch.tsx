@@ -6,6 +6,7 @@ import { Payee } from '../common/banking-types';
 function PayeesListFetch() {
   const [payees, setPayees] = useState<Payee[]>([]);
 
+  // exhaustive-deps
   useEffect(() => {
     dao.getPayees().then(payees => setPayees(payees));
   }, []);

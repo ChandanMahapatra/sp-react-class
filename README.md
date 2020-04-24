@@ -38,3 +38,4 @@ We will walk through the REST server a bit during day one of class. Don't forget
 - [React component lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 - [React Typescript cheatsheet](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet)
 - [Custom hooks from useHooks](https://usehooks.com/)
+- [Axios for HTTP fetching](https://github.com/axios/axios)

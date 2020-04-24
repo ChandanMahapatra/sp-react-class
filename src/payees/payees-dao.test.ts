@@ -3,11 +3,17 @@ import fetchMock from 'jest-fetch-mock';
 
 fetchMock.mockResponse(JSON.stringify(getPayees()));
 
+test('any async call', () => {
+  // expect.assertions(/* number of 'expects' */);
+  // return /* some async call with expects in it */
+})
+
 test('Mocked fetch works', () => {
-  expect.assertions(1);
+  expect.assertions(2);
 
   return dao.getPayees().then((payees) => {
     expect(payees.length).toBeGreaterThan(1);
+    expect(payees.length).toEqual(3);
   });
 });
 
@@ -57,111 +63,6 @@ function getPayees() {
         zip: '42783',
       },
       active: true,
-    },
-    {
-      firstName: 'Jeroen',
-      lastName: 'Thornedike',
-      gender: 'male',
-      dateOfBirth: '1984-04-07',
-      id: '204',
-      version: 1,
-      address: {
-        street: '851 Matt Station',
-        city: 'Ovorp',
-        state: 'UT',
-        zip: '69781-5546',
-      },
-      active: true,
-    },
-    {
-      firstName: 'Angela',
-      lastName: 'Cortez',
-      gender: 'female',
-      dateOfBirth: '1979-05-15',
-      id: '205',
-      version: 1,
-      address: {
-        street: '0546 Baumbach Street',
-        city: 'Garrison',
-        state: 'AK',
-        zip: '27323-2569',
-      },
-      active: true,
-    },
-    {
-      firstName: 'Shen',
-      lastName: 'Li-Min',
-      gender: 'female',
-      dateOfBirth: '1990-06-30',
-      id: '206',
-      version: 1,
-      address: {
-        street: '293 Muller Street',
-        city: 'Leffler',
-        state: 'VT',
-        zip: '33861-2679',
-      },
-      active: true,
-    },
-    {
-      firstName: 'Spider',
-      lastName: 'Jerusalem',
-      gender: 'male',
-      dateOfBirth: '1977-07-05',
-      id: '207',
-      version: 1,
-      address: {
-        street: '282 Queenie Drives',
-        city: 'Hesselview',
-        state: 'AL',
-        zip: '04221',
-      },
-      active: true,
-    },
-    {
-      firstName: 'Jakita',
-      lastName: 'Wagner',
-      gender: 'female',
-      dateOfBirth: '1988-08-12',
-      id: '208',
-      version: 1,
-      address: {
-        street: '46892 Virgil Hill',
-        city: 'Quantico',
-        state: 'VA',
-        zip: '68699',
-      },
-      active: true,
-    },
-    {
-      firstName: 'Elijah',
-      lastName: 'Snow',
-      gender: 'male',
-      dateOfBirth: '1968-09-19',
-      id: '209',
-      version: 1,
-      address: {
-        street: '558 Jalyn Meadow',
-        city: 'Roscoe',
-        state: 'AR',
-        zip: '50499-5983',
-      },
-      active: true,
-    },
-    {
-      firstName: 'Ambrose',
-      lastName: 'Chase',
-      gender: 'male',
-      dateOfBirth: '1993-10-22',
-      id: '210',
-      version: 1,
-      address: {
-        street: '4767 Ibrahim Overpass',
-        city: 'Portsmouth',
-        state: 'RI',
-        zip: '24622',
-      },
-      active: true,
-    },
+    }
   ];
 }
