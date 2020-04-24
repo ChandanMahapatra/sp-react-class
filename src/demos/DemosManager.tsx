@@ -4,6 +4,7 @@ import * as lodash from 'lodash';
 import EffectHook from './effect-hook/EffectHook';
 import ContextDemo from './context-demo/ContextDemo';
 import RouteParametersDemo from './route-parameters/RouteParametersDemo';
+import ReduxCounter from './redux-demo/ReduxCounter';
 
 type RouteConfig = {
   link: string;
@@ -25,6 +26,10 @@ const routes: RouteConfig[] = [
     link: 'route-params',
     component: RouteParametersDemo,
   },
+  {
+    link: 'redux-counter',
+    component: ReduxCounter
+  }
 ];
 
 function DemosManager() {
