@@ -32,3 +32,9 @@ We will walk through the REST server a bit during day one of class. Don't forget
 - https://jasonwatmore.com/post/2019/02/13/react-rxjs-communicating-between-components-with-observable-subject
 - [Redux and observables](https://redux-observable.js.org/)
 - [More Redux and observables](https://blog.betomorrow.com/replacing-redux-with-observables-and-react-hooks-acdbbaf5ba80)
+
+### Links referred to in class
+
+- [React component lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+- [React Typescript cheatsheet](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet)
+- [Custom hooks from useHooks](https://usehooks.com/)
