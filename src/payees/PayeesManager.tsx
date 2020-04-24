@@ -7,7 +7,7 @@ import PayeesContext, {
   payeesReducer
 } from './payees-context';
 import PayeesSearch from './PayeesSearch';
-import PayeesList from './PayeesListContext';
+import PayeesList from './PayeesListRedux';
 import PayeesForm from './PayeesForm';
 
 /*
