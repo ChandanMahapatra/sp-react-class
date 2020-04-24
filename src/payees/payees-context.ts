@@ -33,4 +33,31 @@ const PayeesContext = React.createContext<PayeesContextType>({
   dispatch: null,
 });
 
+export function payeesReducer(
+  state: PayeesContextStateType,
+  action: PayeeAction,
+): PayeesContextStateType {
+  switch (action.type) {
+    case 'sort': {
+      let sortDirection: SortDirection = 'asc';
+      if (state.sortField === action.sortField && state.sortDirection === 'asc') {
+        sortDirection = 'desc';
+      }
+      state.columns.forEach((column) => {
+        if (column.field === action.sortField) {
+          column.sortIndicator = sortDirection === 'asc' ? '⏫' : '⏬';
+        } else {
+          column.sortIndicator = '';
+        }
+      });
+      return { ...state, sortField: action.sortField, sortDirection };
+    }
+    case 'payees': {
+      return { ...state, payees: action.payees };
+    }
+    default:
+      throw new Error('Could not understand type: ' + action.type);
+  }
+}
+
 export default PayeesContext;

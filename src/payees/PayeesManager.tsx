@@ -3,10 +3,8 @@ import { Switch, Route, Link, useRouteMatch } from 'react-router-dom';
 import { Payee } from '../common/banking-types';
 import dao from './payees-dao';
 import PayeesContext, {
-  PayeesContextType,
   PayeesContextStateType,
-  PayeeAction,
-  SortDirection,
+  payeesReducer
 } from './payees-context';
 import PayeesSearch from './PayeesSearch';
 import PayeesList from './PayeesListContext';
@@ -18,33 +16,6 @@ Routed-to components always have access to
 - location
 - match
 */
-
-function payeesReducer(
-  state: PayeesContextStateType,
-  action: PayeeAction,
-): PayeesContextStateType {
-  switch (action.type) {
-    case 'sort': {
-      let sortDirection: SortDirection = 'asc';
-      if (state.sortField === action.sortField && state.sortDirection === 'asc') {
-        sortDirection = 'desc';
-      }
-      state.columns.forEach((column) => {
-        if (column.field === action.sortField) {
-          column.sortIndicator = sortDirection === 'asc' ? '⏫' : '⏬';
-        } else {
-          column.sortIndicator = '';
-        }
-      });
-      return { ...state, sortField: action.sortField, sortDirection };
-    }
-    case 'payees': {
-      return { ...state, payees: action.payees };
-    }
-    default:
-      throw new Error('Could not understand type: ' + action.type);
-  }
-}
 
 function PayeesManager() {
   const match = useRouteMatch();
@@ -60,11 +31,10 @@ function PayeesManager() {
   // <Route basename="/some/dir/app/ourApp"> ... </Router>
   // match.url = /payees
 
-  const [promisePayees, setPromisePayees] = useState<Payee[]>([]);
   const [asyncPayees, setAsyncPayees] = useState<Payee[]>([]);
 
   const initialState: PayeesContextStateType = {
-    payees: promisePayees,
+    payees: [],
     sortField: '',
     sortDirection: 'asc',
     columns: [
@@ -88,14 +58,13 @@ function PayeesManager() {
 
   const [state, dispatch] = useReducer(payeesReducer, initialState);
 
-  const contextValue: PayeesContextType = {
+  const contextValue = {
     state,
     dispatch,
   };
 
   useEffect(() => {
     dao.getPayees().then((payees) => {
-      setPromisePayees(payees);
       dispatch({ type: 'payees', payees });
     });
   }, []);
@@ -113,7 +82,7 @@ function PayeesManager() {
     <PayeesContext.Provider value={contextValue}>
       <div className="row">
         <div className="col">
-          <p>With promises: There are {promisePayees?.length} payees.</p>
+          <p>With promises: There are {state.payees.length} payees.</p>
           <p>Async/await: There are {asyncPayees.length} payees.</p>
         </div>
       </div>
