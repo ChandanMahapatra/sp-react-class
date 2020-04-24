@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Switch, Route, Link, useRouteMatch } from 'react-router-dom';
 import { Payee } from '../common/banking-types';
 import dao from './payees-dao';
+import PayeesContext, { PayeesContextType } from './payees-context';
 import PayeesSearch from './PayeesSearch';
-import PayeesList from './PayeesListFetch';
+import PayeesList from './PayeesListContext';
 import PayeesForm from './PayeesForm';
 
 /*
@@ -30,6 +31,13 @@ function PayeesManager() {
   const [promisePayees, setPromisePayees] = useState<Payee[]>([]);
   const [asyncPayees, setAsyncPayees] = useState<Payee[]>([]);
 
+  const contextValue: PayeesContextType = {
+    payees: promisePayees,
+    sortField: '',
+    sortDirection: 'asc',
+    setPayees: setPromisePayees,
+  };
+
   useEffect(() => {
     dao.getPayees().then((payees) => setPromisePayees(payees));
   }, []);
@@ -44,7 +52,7 @@ function PayeesManager() {
   }, []);
 
   return (
-    <React.Fragment>
+    <PayeesContext.Provider value={contextValue}>
       <div className="row">
         <div className="col">
           <p>With promises: There are {promisePayees?.length} payees.</p>
@@ -94,7 +102,7 @@ function PayeesManager() {
           </Switch>
         </div>
       </div>
-    </React.Fragment>
+    </PayeesContext.Provider>
   );
 }
 

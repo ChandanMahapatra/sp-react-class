@@ -10,15 +10,16 @@ export type ColumnConfig = {
 type DataGridProps<T> = {
   columns: ColumnConfig[];
   rows: T[];
+  selectHeader?: (field: string) => void;
 };
 
-function DataGrid<T extends HasId>({ columns, rows }: DataGridProps<T>) {
+function DataGrid<T extends HasId>({ columns, rows, selectHeader }: DataGridProps<T>) {
   return (
     <table className="table table-striped table-hover">
       <thead>
         <tr>
           {columns.map((column) => (
-            <th key={column.field}>{column.label}</th>
+            <th key={column.field} onClick={() => selectHeader && selectHeader(column.field)}>{column.label}</th>
           ))}
         </tr>
       </thead>

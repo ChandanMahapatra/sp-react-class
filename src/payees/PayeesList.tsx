@@ -19,10 +19,11 @@ const columns: ColumnConfig[] = [
 
 type PayeesListProps = {
   payees: Payee[];
+  selectHeader?: (field: string) => void;
 };
 
-function PayeesList({ payees }: PayeesListProps) {
-  return <DataGrid columns={columns} rows={payees} />;
+function PayeesList({ payees, selectHeader }: PayeesListProps) {
+  return <DataGrid columns={columns} rows={payees} selectHeader={selectHeader} />;
 }
 
 export default PayeesList;
